@@ -1,0 +1,34 @@
+{
+  "name": "@leizm/logger",
+  "version": "1.0.0",
+  "description": "简单日志记录器",
+  "main": "dist/index.js",
+  "scripts": {
+    "test": "npm run lint",
+    "lint": "prettier --write 'src/**/*.ts'",
+    "compile": "tsc",
+    "prepublish": "npm run lint && npm run compile"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/leizongmin/leizm-logger.git"
+  },
+  "keywords": [
+    "logger"
+  ],
+  "author": "Zongmin Lei <leizongmin@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/leizongmin/leizm-logger/issues"
+  },
+  "homepage": "https://github.com/leizongmin/leizm-logger#readme",
+  "devDependencies": {
+    "prettier": "^1.8.2",
+    "typescript": "^2.6.1"
+  },
+  "dependencies": {
+    "@types/cli-color": "^0.3.29",
+    "@types/node": "^8.0.53",
+    "cli-color": "^1.2.0"
+  }
+}
