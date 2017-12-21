@@ -1,5 +1,7 @@
 # @leizm/logger
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/leizongmin/leizm-logger.svg)](https://greenkeeper.io/)
+
 简单日志记录器
 
 ## 安装
