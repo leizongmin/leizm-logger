@@ -34,27 +34,22 @@ export class Logger {
     this.prefix = prefix ? prefix + " " : "";
   }
 
-  protected writeLine(isError: boolean, str: string): void {
+  protected writeLine(isError: boolean, level: string, str: string): void {
     if (this.color) {
-      this.writeLineWithColor(isError, str);
+      this.writeLineWithColor(isError, level, str);
     } else {
-      this.writeLineNoColor(isError, str);
+      this.writeLineNoColor(isError, level, str);
     }
   }
 
-  private writeLineWithColor(isError: boolean, str: string): void {
+  private writeLineWithColor(isError: boolean, level: string, str: string): void {
     const line =
-      clc.blackBright(clc.inverse(getISODateString())) +
-      " " +
-      clc.cyan(this.prefix) +
-      str +
-      "\n";
+      clc.blackBright(clc.inverse(getISODateString())) + " [" + level + "]" + " " + clc.cyan(this.prefix) + str + "\n";
     this._write(isError, line);
   }
 
-  private writeLineNoColor(isError: boolean, str: string): void {
-    const line =
-      clc.inverse(getISODateString()) + " " + this.prefix + str + "\n";
+  private writeLineNoColor(isError: boolean, level: string, str: string): void {
+    const line = clc.inverse(getISODateString()) + " [" + level + "]" + " " + this.prefix + str + "\n";
     this._write(isError, line);
   }
 
@@ -72,7 +67,7 @@ export class Logger {
    * @param param
    */
   public debug(format: any, ...param: any[]): void {
-    this.writeLine(false, clc.blackBright(formatString(format, ...param)));
+    this.writeLine(false, "DEBUG", clc.blackBright(formatString(format, ...param)));
   }
 
   /**
@@ -81,7 +76,7 @@ export class Logger {
    * @param param
    */
   public info(format: any, ...param: any[]): void {
-    this.writeLine(false, formatString(format, ...param));
+    this.writeLine(false, "INFO", formatString(format, ...param));
   }
 
   /**
@@ -90,7 +85,7 @@ export class Logger {
    * @param param
    */
   public warn(format: any, ...param: any[]): void {
-    this.writeLine(true, clc.yellow(formatString(format, ...param)));
+    this.writeLine(true, "WARN", clc.yellow(formatString(format, ...param)));
   }
 
   /**
@@ -99,7 +94,7 @@ export class Logger {
    * @param param
    */
   public error(format: any, ...param: any[]): void {
-    this.writeLine(true, clc.red(formatString(format, ...param)));
+    this.writeLine(true, "ERROR", clc.red(formatString(format, ...param)));
   }
 
   /**
@@ -108,7 +103,7 @@ export class Logger {
    * @param param
    */
   public fatal(format: any, ...param: any[]): void {
-    this.writeLine(true, clc.bgRed.whiteBright(formatString(format, ...param)));
+    this.writeLine(true, "FATAL", clc.bgRed.whiteBright(formatString(format, ...param)));
     process.exit(1);
   }
 
