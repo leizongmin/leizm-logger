@@ -1,6 +1,6 @@
 {
   "name": "@leizm/logger",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "description": "简单日志记录器",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
